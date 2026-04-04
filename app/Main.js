@@ -1,10 +1,13 @@
 import { Pressable, StyleSheet, Text, View, TextInput } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useVentas } from "../hooks/useVentas";
+import { useFormatNum } from "../hooks/useFormatNum";
+import { InputField } from "../components/InputField";
 
 export default function Main() {
   const { datos, setDatos, resultados, setResultados, calcular } = useVentas();
   const { total, promedio, resultado } = resultados;
+  const { formatoNum } = useFormatNum();
 
   const limpiar = () => {
     setDatos({
@@ -24,28 +27,25 @@ export default function Main() {
     <SafeAreaView style={styles.container}>
       <Text style={styles.text}>Calcular promedio de ventas</Text>
       <View style={{ width: "100%", alignItems: "center", marginBottom: 20 }}>
-        <TextInput
-          style={styles.input}
+        <InputField
+          label="Ventas de refacciones"
           placeholder="Ingrese importe de ventas de refacciones"
-          keyboardType="numeric"
           value={datos.refacciones}
           onChangeText={(refacciones) =>
             setDatos({ ...datos, refacciones: refacciones })
           }
         />
-        <TextInput
-          style={styles.input}
+        <InputField
+          label="Ventas de servicio"
           placeholder="Ingrese importe de ventas de servicio"
-          keyboardType="numeric"
           value={datos.servicio}
           onChangeText={(servicio) =>
             setDatos({ ...datos, servicio: servicio })
           }
         />
-        <TextInput
-          style={styles.input}
+        <InputField
+          label="Ventas de vehículos"
           placeholder="Ingrese importe de ventas de autos y camiones"
-          keyboardType="numeric"
           value={datos.vehiculos}
           onChangeText={(vehiculos) =>
             setDatos({ ...datos, vehiculos: vehiculos })
@@ -54,9 +54,9 @@ export default function Main() {
       </View>
       {resultado !== "" && (
         <View style={{ marginTop: 20, alignItems: "center" }}>
-          <Text style={styles.textResultado}>Total: {total.toFixed(2)}</Text>
+          <Text style={styles.textResultado}>Total: {formatoNum(total)}</Text>
           <Text style={styles.textResultado}>
-            Promedio: {promedio.toFixed(2)}
+            Promedio: {formatoNum(promedio)}
           </Text>
           <Text
             style={[
@@ -113,17 +113,6 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
     textAlign: "center",
-    color: "white",
-  },
-  input: {
-    height: 40,
-    borderColor: "#aaa",
-    borderWidth: 1,
-    marginTop: 20,
-    padding: 10,
-    width: "80%",
-    borderRadius: 10,
-    backgroundColor: "#555",
     color: "white",
   },
   boton: {
