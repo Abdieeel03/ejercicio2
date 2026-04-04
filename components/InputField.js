@@ -1,6 +1,12 @@
 import { View, Text, TextInput, StyleSheet } from "react-native";
 
 export function InputField({ label, placeholder, value, onChangeText }) {
+  const handleChange = (text) => {
+    const limpio = text.replace(/[^0-9.]/g, "").replace(/(\..*)\./g, "$1");
+
+    onChangeText(limpio);
+  };
+
   return (
     <View style={styles.divInput}>
       <Text style={styles.label}>{label}</Text>
@@ -9,7 +15,7 @@ export function InputField({ label, placeholder, value, onChangeText }) {
         placeholder={placeholder}
         keyboardType="numeric"
         value={value}
-        onChangeText={onChangeText}
+        onChangeText={handleChange}
         placeholderTextColor="#aaa"
       />
     </View>
