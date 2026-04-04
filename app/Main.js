@@ -53,7 +53,7 @@ export default function Main() {
         />
       </View>
       {resultado !== "" && (
-        <View style={{ marginTop: 20, alignItems: "center" }}>
+        <View style={{ marginVertical: 20, alignItems: "center" }}>
           <Text style={styles.textResultado}>Total: {formatoNum(total)}</Text>
           <Text style={styles.textResultado}>
             Promedio: {formatoNum(promedio)}
@@ -75,11 +75,13 @@ export default function Main() {
         <Pressable
           style={({ pressed }) => [
             styles.boton,
-            { backgroundColor: pressed ? "#005BBB" : "#007AFF" },
+            { backgroundColor: pressed ? "#005abbd7" : "#007AFF" },
           ]}
           onPress={calcular}
         >
-          <Text style={{ color: "#fff" }}>Calcular</Text>
+          <Text style={{ color: "#fff", fontWeight: "bold", fontSize: 16 }}>
+            Calcular
+          </Text>
         </Pressable>
         <Pressable
           style={({ pressed }) => [
@@ -88,7 +90,9 @@ export default function Main() {
           ]}
           onPress={limpiar}
         >
-          <Text style={{ color: "#fff" }}>Limpiar</Text>
+          <Text style={{ color: "#fff", fontWeight: "bold", fontSize: 16 }}>
+            Limpiar
+          </Text>
         </Pressable>
       </View>
     </SafeAreaView>
