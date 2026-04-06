@@ -71,7 +71,7 @@ export default function Main() {
           </Text>
         </View>
       )}
-      <View style={{ flexDirection: "row", gap: 20 }}>
+      <View style={styles.containerBoton}>
         <Pressable
           style={({ pressed }) => [
             styles.boton,
@@ -79,9 +79,7 @@ export default function Main() {
           ]}
           onPress={calcular}
         >
-          <Text style={{ color: "#fff", fontWeight: "bold", fontSize: 16 }}>
-            Calcular
-          </Text>
+          <Text style={styles.textBoton}>Calcular</Text>
         </Pressable>
         <Pressable
           style={({ pressed }) => [
@@ -90,9 +88,7 @@ export default function Main() {
           ]}
           onPress={limpiar}
         >
-          <Text style={{ color: "#fff", fontWeight: "bold", fontSize: 16 }}>
-            Limpiar
-          </Text>
+          <Text style={styles.textBoton}>Limpiar</Text>
         </Pressable>
       </View>
     </SafeAreaView>
@@ -125,5 +121,14 @@ const styles = StyleSheet.create({
     paddingHorizontal: 40,
     borderRadius: 15,
     marginTop: 20,
+  },
+  textBoton: {
+    color: "#fff",
+    fontWeight: "bold",
+    fontSize: 16,
+  },
+  containerBoton: {
+    flexDirection: "row",
+    gap: 20,
   },
 });
